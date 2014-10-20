@@ -1,4 +1,13 @@
 *.class
+target
+.settings
+.classpath
+.project
+.checkstyle
+.pmd
+.pmdruleset.xml
+.idea/*
+*.iml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
