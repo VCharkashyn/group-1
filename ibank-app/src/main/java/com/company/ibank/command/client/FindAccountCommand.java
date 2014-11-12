@@ -1,6 +1,7 @@
 package com.company.ibank.command.client;
 
 import com.company.ibank.command.Command;
+import com.company.ibank.exceptions.ServiceException;
 import com.company.ibank.model.Account;
 import com.company.ibank.services.AccountService;
 import com.company.ibank.utils.ValidationUtil;
@@ -25,6 +26,8 @@ public class FindAccountCommand implements Command {
 
             Long accountId = ValidationUtil.validateAccountID(input.next());
             account = accountService.find(accountId);
+        } catch (ServiceException e) {
+            e.printStackTrace();
         } finally {
             input.close();
         }

@@ -37,7 +37,7 @@ public class BankServiceImpl implements BankService {
                 Currency currencyFromAccount = money.getCurrency();
                 if (currencyFromAccount.equals(currency)) {
                     System.out.println("Currency is the same to exchange");
-                    //low.warn
+                    //log.warn
                 } else {
                     String currencyName = currencyFromAccount.getCurrencyName();
                     String currencyNameTo = currency.getCurrencyName();
@@ -72,17 +72,17 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public List<Account> filterByName(String name, String surname) throws ServiceException {
-        List<Account> accounts = Collections.emptyList();
+        List<Account> result = Collections.emptyList();
         try {
             lock.lock();
-            accounts = accountDao.getAccounts();
+            List<Account> accounts = accountDao.getAccounts();
             if (accounts == null || accounts.isEmpty()) {
                 return Collections.emptyList();
             }
-            List<Account> list = new ArrayList<Account>(accounts.size());
+            result = new ArrayList<Account>(accounts.size());
             for (Account account : accounts) {
                 if (account.getOwner() != null && (account.getOwner().getName().equals(name) && account.getOwner().getSurname().equals(surname))) {
-                    list.add(account);
+                    result.add(account);
                 }
             }
         } catch (DAOException e) {
@@ -90,22 +90,22 @@ public class BankServiceImpl implements BankService {
         } finally {
             lock.unlock();
         }
-        return accounts;
+        return result;
     }
 
     @Override
     public List<Account> filterByCurrency(Currency currency) throws ServiceException {
-        List<Account> accounts = Collections.emptyList();
+        List<Account> result = Collections.emptyList();
         try {
             lock.lock();
-            accounts = accountDao.getAccounts();
+            List<Account> accounts = accountDao.getAccounts();
             if (accounts == null || accounts.isEmpty()) {
                 return Collections.emptyList();
             }
-            List<Account> list = new ArrayList<Account>(accounts.size());
+            result = new ArrayList<Account>(accounts.size());
             for (Account account : accounts) {
                 if (account.getMoney() != null && account.getMoney().getCurrency().equals(currency)) {
-                    list.add(account);
+                    result.add(account);
                 }
             }
         } catch (DAOException e) {
@@ -113,7 +113,7 @@ public class BankServiceImpl implements BankService {
         } finally {
             lock.unlock();
         }
-        return accounts;
+        return result;
     }
 
     @Override

@@ -4,6 +4,7 @@ package com.company.ibank.dao;
 import com.company.ibank.exceptions.DAOException;
 import com.company.ibank.model.Person;
 import com.company.ibank.utils.FileUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +21,10 @@ public class PersonDAOImpl implements PersonDAO {
 
     @Override
     public Person createOrUpdatePerson(String name, String surname) throws DAOException {
+        if (StringUtils.isEmpty(name) || StringUtils.isEmpty(surname)) {
+            return null;
+        }
+
         try {
             lock.lock();
             String personString = personToString(name, surname);

@@ -7,24 +7,48 @@
   <version>1.0-SNAPSHOT</version>
   <name>ibank-app</name>
   <url>http://maven.apache.org</url>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-      <dependency>
+    <dependencies>
+        <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.11</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jmock</groupId>
+          <artifactId>jmock</artifactId>
+          <version>2.6.0</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jmock</groupId>
+          <artifactId>jmock-junit4</artifactId>
+          <version>2.6.0</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jmock</groupId>
+          <artifactId>jmock-legacy</artifactId>
+          <version>2.6.0</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>junit-addons</groupId>
+          <artifactId>junit-addons</artifactId>
+          <version>1.4</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
           <groupId>org.apache.commons</groupId>
           <artifactId>commons-lang3</artifactId>
           <version>3.3.2</version>
-      </dependency>
-      <dependency>
+        </dependency>
+        <dependency>
           <groupId>log4j</groupId>
           <artifactId>log4j</artifactId>
           <version>1.2.17</version>
-      </dependency>
-  </dependencies>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -49,6 +73,21 @@
                         </manifest>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
