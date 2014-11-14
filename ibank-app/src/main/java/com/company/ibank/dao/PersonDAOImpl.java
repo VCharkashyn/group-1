@@ -12,7 +12,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class PersonDAOImpl implements PersonDAO {
     private static final String FILE_PERSON = "person";
-    private ReentrantLock lock = new ReentrantLock();
     private File file;
 
     public PersonDAOImpl() {
@@ -26,7 +25,6 @@ public class PersonDAOImpl implements PersonDAO {
         }
 
         try {
-            lock.lock();
             String personString = personToString(name, surname);
             String line = FileUtil.findLine(file, personString);
             if (line == null) {
@@ -35,8 +33,6 @@ public class PersonDAOImpl implements PersonDAO {
             return new Person(name, surname);
         } catch (IOException e) {
             throw new DAOException("I/O exception", e);
-        } finally {
-            lock.unlock();
         }
     }
 

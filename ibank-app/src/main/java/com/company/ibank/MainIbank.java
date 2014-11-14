@@ -7,12 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainIbank {
     private static final Logger log = Logger.getLogger(MainIbank.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         Scanner input = new Scanner(System.in);
         try {
             System.out.println("Choose please corresponding role and enter word in brackets: " +
@@ -42,7 +43,7 @@ public class MainIbank {
                             if (Command.EXIT_COMMAND.equals(commandBank)) {
                                 isNotExitBank = false;
                             } else {
-                                //ActionHelper.getInstance().getCommand(commandBank).execute();
+                                System.out.println(ActionHelper.getInstance().getCommandAndExecute(commandBank).get());
                             }
                         } while (isNotExitBank);
 
@@ -61,7 +62,7 @@ public class MainIbank {
                             if (Command.EXIT_COMMAND.equals(commandBank)) {
                                 isNotExitClient = false;
                             } else {
-                               // ActionHelper.getInstance().getCommand(commandBank).execute();
+                                System.out.println(ActionHelper.getInstance().getCommandAndExecute(commandBank).get());
                             }
 
                         } while (isNotExitClient);
@@ -69,11 +70,12 @@ public class MainIbank {
                 }
             } while (isNotExit);
         }
-//        catch (CommandException e) {
-//            log.error("Sorry, Exception occurred", e);
-//        }
+        catch (CommandException e) {
+            log.error("Sorry, Exception occurred", e);
+        }
         finally {
             input.close();
+            ActionHelper.getInstance().close();
         }
     }
 }

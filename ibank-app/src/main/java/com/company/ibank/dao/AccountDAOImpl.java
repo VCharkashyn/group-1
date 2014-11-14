@@ -13,7 +13,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class AccountDAOImpl implements AccountDAO {
     private static final String FILE_ACCOUNT="account";
-    private ReentrantLock lock = new ReentrantLock();
     private PersonDAO personDAO;
     private File file;
 
@@ -30,7 +29,6 @@ public class AccountDAOImpl implements AccountDAO {
         Long id = null;
 
         try {
-            lock.lock();
             Person owner = account.getOwner();
             if (account.getId() == null) {
                 personDAO.createOrUpdatePerson(owner.getName(), owner.getSurname());
@@ -41,8 +39,6 @@ public class AccountDAOImpl implements AccountDAO {
             }
         } catch (IOException e) {
             new DAOException("I/O exception", e);
-        } finally {
-            lock.unlock();
         }
         return id;
     }
@@ -50,7 +46,6 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public Account findById(long id) throws DAOException {
         try {
-            lock.lock();
             String line = FileUtil.findLine(file, "id=" + id);
             if (line == null) {
                 return null;
@@ -59,9 +54,6 @@ public class AccountDAOImpl implements AccountDAO {
         } catch (IOException ex) {
             throw new DAOException("I/O exception", ex);
         }
-        finally {
-            lock.unlock();
-        }
     }
 
     @Override
@@ -69,7 +61,6 @@ public class AccountDAOImpl implements AccountDAO {
         List<Account> accounts = new ArrayList<Account>();
 
         try {
-            lock.lock();
             List<String> lines = FileUtil.readLines(file);
             for (String line : lines) {
                 Account account = stringToAccount(line);
@@ -79,9 +70,6 @@ public class AccountDAOImpl implements AccountDAO {
             }
         } catch (IOException ex) {
             throw new DAOException("I/O exception", ex);
-        }
-        finally {
-            lock.unlock();
         }
 
         return accounts;
