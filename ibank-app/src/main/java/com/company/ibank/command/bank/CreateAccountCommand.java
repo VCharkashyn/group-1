@@ -23,7 +23,7 @@ public class CreateAccountCommand implements Command {
     }
 
     @Override
-    public String call()  {
+    public String call() throws CommandException {
         Scanner reader = new Scanner(System.in);
         Person person = null;
         Long accountId = null;
@@ -58,7 +58,7 @@ public class CreateAccountCommand implements Command {
             person = personService.findOrCreatePerson(name, surname);
             accountId = accountService.createAccount(person, amount, currency);
         } catch (Exception ex) {
-            LOG.error("");
+            throw new CommandException("exception occured", ex);
         } finally {
             reader.close();
         }
