@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">          
+        <title>404 : Page Not Found</title>
+        <meta charset="utf-8">        
+        <link rel="stylesheet" href="resources/505_files/style.css" type="text/css" media="screen">
+        <script type="text/javascript">
+            function testResults (form) {    
+               var TestVar = 'http://www.google.com?q='+form.inputbox.value;
+               setTimeout(window.location=TestVar,1250);                
+                this.form.submit();
+            }
+        </script>	
+    </head>
+    <body data-rendering="true">
+        <nav class="main contents"></nav>
+        <section id="body" class="contents head">
+            <div id="error-404"> 
+                <img src="resources/505_files/404-img.png" alt="">
+                <div id="error-message">
+                    <h1>Oops! Server error...</h1>
+                    <p>Sorry, it appears there has been an internal server error with the page you've requested.</p>
+                    <p>The site administrator has been notified.</p>
+                    <form method="POST">
+                        <fieldset id="search-box"> 
+                            <input name="inputbox" id="s" class="text" type="text"> 
+                            <input id="search" name="search" value="GO" class="button" type="submit" onClick="testResults(this.form);return false;">	
+                        </fieldset>
+                    </form>
+                    <p>You can also try to find this site later, so you can just find something else to read instead.
+                    </p>
+                </div>
+            </div>
+        </section> 
+        <aside id="asides" class="contents">
+            <nav class="secondary contents"></nav> 
+            <footer id="contentinfo" class="contents"> 
+                <small>© Copyright IBank 2012. All Rights Reserved.</small>
+            </footer>
+        </aside>
+    </body>
+</html>

@@ -1,10 +1,11 @@
 package com.company.ibank.model;
 
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Rate {
+public class Rate implements Serializable {
 
     private BigDecimal rate;
 

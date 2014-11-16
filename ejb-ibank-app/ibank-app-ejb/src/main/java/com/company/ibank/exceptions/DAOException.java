@@ -1,8 +1,9 @@
 package com.company.ibank.exceptions;
 
-/**
- * Created by dimon on 08.11.2014.
- */
+
+import javax.ejb.ApplicationException;
+
+@ApplicationException
 public class DAOException extends Exception {
 
     public DAOException(String message) {

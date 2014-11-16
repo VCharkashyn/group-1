@@ -1,0 +1,382 @@
+/*  This template was created by Mantis-a [http://www.mantisa.cz/]. For more templates visit Free website templates [http://www.mantisatemplates.com/]. */
+
+
+
+/* CSS Document */
+
+
+/* General */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    font-size: 62.5%;
+}
+
+body {
+    height: 100%;
+    text-align: center;
+    font: 1.2em Verdana, Arial, Helvetica, sans-serif;
+    background: #FFFFFF url('../img/bg.gif') repeat-x 0 0;
+    min-width: 770px;
+    padding-bottom: 60px; /* Simulates margin-bottom for wrapper in IE */
+}
+
+a:link, a:visited {
+    color: #005886;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.cleaner {
+    clear: both;
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+}
+
+.noscreen {
+    display: none;
+}
+
+
+/* Paragraphs, headings, ... */
+
+p {
+    line-height: 170%;
+}
+
+h1 {
+    font-size: 2.6em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    color: #595959;
+    letter-spacing: 1px;
+    text-align: left;
+    padding: 25px 0 2px 15px;
+    margin-left: 30px;
+    border-bottom: 1px solid #EEEEEE;
+    background: url('../img/h1-bg.gif') no-repeat 0 34px;
+}
+
+h1 a:link, h1 a:visited {
+    font-weight: normal;
+    text-decoration: none;
+    color: #595959;
+}
+
+h2 {
+    font-size: 1.4em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: normal;
+    color: #595959;
+    text-align: left;
+    margin: 6px 0 0 30px;
+}
+
+h3 {
+    color: #00598D;
+    font-size: 1.4em;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-align: left;
+    letter-spacing: 1px;
+    margin: 30px 0 10px 0;
+}
+
+h3.first {
+    margin-top: 0;
+}
+
+ul {
+    list-style-type: none; 
+}
+
+
+/* Images */
+
+img.portfolio {
+    border: 3px solid #8ED8FF;
+    margin: 0 12px 16px 0;
+}
+
+a:hover img.portfolio {
+    border: 3px solid #FF6123;
+    margin: 0 12px 16px 0;
+}
+
+
+/* Site wrapper, content paragraph background */
+
+#wrapper {
+    width: 770px;
+    margin: 35px auto 60px auto;
+    position: relative;
+    background-color: #FFFFFF;
+    border: 1px solid #C3C3C3;
+    display: table; /* margin-bottom for FF   (?) */
+}
+
+.division {
+    background-color: #DBF1FF;
+    border: 1px solid #4899CC;
+    padding: 0.5em 0.9em;
+    margin-bottom: 17px;
+}
+
+.division p {
+    color: #003C5B;
+}
+
+
+/* Header */
+
+#header {
+    margin: 0 auto;
+    height: 140px;
+    position: relative;
+    background: #FFFFFF url('../img/hd-bg.gif') repeat-x 0 0;
+    padding-right: 330px;
+}
+
+#header-wrapper { /* Matrjoska hack for IE quirk box model by Pixy (Petr Stanicek) [http://www.pixy.cz/] */
+    width: 770px;
+}
+
+
+/* Logout form */
+.logout {
+    width: 188px;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
+/* Content boxes */
+
+#content-box {
+    width: 100%;
+    margin: 0 auto;
+    text-align: left;
+    color: #151515;
+    position: relative;
+}
+
+#content-box-in {
+    width: 100%;
+}
+
+#content-box-left {
+    float: left;
+    width: 24%;
+    margin-bottom: 5em;
+}
+
+#content-box-right {
+    float: right;
+    width: 75%;
+    margin-bottom: 5em;
+}
+
+#content-box-left-in {
+    margin: 0.4em 0.3em 0 0;
+}
+
+#content-box-right-in {
+    margin: 0.4em 1.6em 0 0.6em;
+}
+
+
+/* Content boxes directives */
+
+#content-box-left-in h3 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    background: #007CBC url('../img/h3-bg.gif') repeat-x 0 0;
+    color: #FFFFFF;
+    margin: 0;
+    text-align: center;
+    line-height: 24px;
+    font-size: 1.1em;
+}
+
+#content-box-left-in p {
+    margin: 0 0 5px 12px;
+    line-height: 130%;
+}
+
+#content-box-left-in p.first {
+    margin-top: 10px;
+}
+
+#content-box-left-in p span {
+    color: #4B4B4B;
+}
+
+#content-box-left-in ul li {
+    text-align: center;
+    border-bottom: 1px solid #CFCFCF;
+    border-right: 1px solid #CFCFCF;
+    display: block;
+}
+
+#content-box-left-in ul li.last {
+    border-bottom: none;
+}
+
+#content-box-left-in ul li a, #content-box-left-in ul li a:visited  {
+    color: #006092;
+    display: block;
+    padding: 0.4em 0;
+    width: 100%;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+#content-box-left-in ul li a:hover, #content-box-left-in ul li a.active {
+    background-color: #DBF3FF;
+    font-weight: bold !important;
+}
+/* Messages  */
+#messag{
+
+}
+.info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size:13px;
+}
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('../img/info.png');
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('../img/success.png');
+}
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('../img/warning.png');
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('../img/error.png');
+}
+.validation {
+color: #D63301;
+background-color: #FFCCBA;
+background-image: url('../img/validation.png');
+}
+/*Tabels*/
+.sptable{
+    
+}
+
+.sptable table {
+    border-collapse: collapse;
+    text-align: center;
+}
+ .sptable td{
+    border: 1px solid #000;
+}
+.sptable thead {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+ .sptable thead td {
+    padding: 0 .5em;
+}
+ .odd {
+    background-color: #E6E6E6;
+}
+ .even {
+    background-color: #fff;
+}
+
+
+/* Submit form */
+
+form.send {
+    width: 450px;
+    position: relative;
+    top: 0;
+    left: 5px;
+}
+
+form.send fieldset {
+    padding: 10px 10px 5px 10px;
+    margin: 0 0 10px 0;
+    border: 1px solid #00598D;
+}
+
+form.send legend {
+    font-weight: bold;
+    color: blue;
+    margin-bottom: 10px;
+    padding: 3px 6px;
+    background-color: #00598D;
+    color: #FFFFFF;
+}
+
+form.send label {
+    width: 105px;
+    float: left;
+    height: auto;
+    display: block;
+    margin: 0 0 0 5px;
+}
+
+form.send br {
+    display: none;
+}
+
+form.send input, form.send select {
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+form.send textarea {
+    width: 300px;
+    height: 130px;
+    margin-bottom: 10px;
+}
+
+form.send input.go {
+    margin-left: 110px;
+    width: auto;
+    padding: 1px 3px;
+}
+
+
+/* Footer */
+
+#footer {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+#footer a, #footer a:visited {
+    padding: 1px 2px;
+    font-weight: normal;
+}
+
+#footer a:hover {
+    background-color: #005886;
+    color: #FFFFFF;
+}
+
