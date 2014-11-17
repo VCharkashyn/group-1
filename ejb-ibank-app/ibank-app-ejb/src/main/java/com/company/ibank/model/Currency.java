@@ -1,7 +1,9 @@
 package com.company.ibank.model;
 
 
-public class Currency {
+import java.io.Serializable;
+
+public class Currency implements Serializable {
     private String currency;
 
 

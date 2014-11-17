@@ -1,9 +1,10 @@
 package com.company.ibank.model;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Account {
+public class Account implements Serializable {
     private long id;
     private String userName;
     private List<Currency> currencies;

@@ -1,7 +1,10 @@
 package com.company.ibank.services;
 
-/**
- * Created by dimon on 16.11.2014.
- */
+import javax.ejb.Local;
+import javax.ejb.Stateless;
+
+@Local
+@Stateless
 public interface ExchangeRateService {
+   void exchangeCurrencies();
 }
