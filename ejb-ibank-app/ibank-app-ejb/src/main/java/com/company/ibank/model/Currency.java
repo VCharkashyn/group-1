@@ -1,11 +1,18 @@
 package com.company.ibank.model;
 
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "CURRENCY", schema = "IBANK")
 public class Currency implements Serializable {
-    private String currency;
+    private static final long serialVersionUID = 5548825985265251266L;
 
+    @Id
+    @Basic(optional = false)
+    @Column(name = "currency", nullable = false, unique = true)
+    private String currency;
 
     public String getCurrency() {
         return currency;

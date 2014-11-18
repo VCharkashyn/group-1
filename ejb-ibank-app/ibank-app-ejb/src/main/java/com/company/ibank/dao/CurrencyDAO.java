@@ -8,7 +8,6 @@ import javax.ejb.Stateful;
 import java.util.List;
 
 @Local
-@Stateful
 public interface CurrencyDAO {
 
     void create(Currency currency) throws DAOException;

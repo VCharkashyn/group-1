@@ -7,8 +7,11 @@ import com.company.ibank.exceptions.ServiceException;
 import com.company.ibank.model.Account;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import java.util.List;
 
+@Stateful//rewrite to stateless
 public class AccountServiceImpl implements AccountService{
 
     @EJB
@@ -26,17 +29,12 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public void closeAccount(long id) throws ServiceException {
+    public void closeAccount(Account account) throws ServiceException {
         try {
-            accountDAO.remove(id);
+            accountDAO.remove(account);
         } catch (DAOException e) {
             throw new ServiceException("", e);
         }
-    }
-
-    @Override
-    public void closeAccount(Account account) throws ServiceException {
-        closeAccount(account.getId());
     }
 
     @Override

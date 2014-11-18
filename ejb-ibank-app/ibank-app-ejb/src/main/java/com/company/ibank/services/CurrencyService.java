@@ -4,11 +4,11 @@ import com.company.ibank.exceptions.ServiceException;
 import com.company.ibank.model.Currency;
 
 import javax.ejb.Local;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import java.util.List;
 
-@Local
-@Stateless
+@Remote
 public interface CurrencyService {
     void addCurrency(Currency currency) throws ServiceException;
 
