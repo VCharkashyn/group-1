@@ -8,13 +8,11 @@ import javax.ejb.Local;
 import javax.ejb.Stateful;
 import java.util.List;
 
-
 @Local
-@Stateful
 public interface AccountDAO {
     Long create(Account account) throws DAOException;
 
-    void remove(long id) throws DAOException;
+    void remove(Account account) throws DAOException;
 
     Account findById(long id) throws DAOException;
 
