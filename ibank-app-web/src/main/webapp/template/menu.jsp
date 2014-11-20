@@ -5,7 +5,7 @@
 <!-- Content left -->
 <div id="content-box-left">
     <div id="content-box-left-in">
-        <fmt:setLocale value="${requestScope.language}"/>
+        <fmt:setLocale value="${language}"/>
         <fmt:setBundle basename="messages"/>
         <h3><fmt:message key="menu"/></h3>
 

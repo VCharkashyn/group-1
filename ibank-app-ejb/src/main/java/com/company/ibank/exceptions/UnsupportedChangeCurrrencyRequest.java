@@ -1,11 +1,10 @@
 package com.company.ibank.exceptions;
 
-public class UnsupportedChangeCurrrencyRequest extends Exception {
+import javax.ejb.ApplicationException;
+
+@ApplicationException
+public class UnsupportedChangeCurrrencyRequest extends ServiceException {
     public UnsupportedChangeCurrrencyRequest(String message) {
         super(message);
-    }
-
-    public UnsupportedChangeCurrrencyRequest(String message, Throwable cause) {
-        super(message, cause);
     }
 }

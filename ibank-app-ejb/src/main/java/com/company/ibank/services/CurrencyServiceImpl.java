@@ -1,13 +1,25 @@
-package com.company.ibank.services.local;
+package com.company.ibank.services;
 
 import com.company.ibank.dao.CurrencyDAO;
+import com.company.ibank.exceptions.CurrencyNotFound;
 import com.company.ibank.exceptions.ServiceException;
 import com.company.ibank.model.Currency;
+import com.company.ibank.services.local.CurrencyServiceLocal;
+import com.company.ibank.services.remote.CurrencyServiceRemote;
+import com.company.ibank.utils.configurators.ConfigurationManager;
 
+import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import java.util.List;
 
-public class CurrencyServiceImpl implements CurrencyService {
+@Stateless
+@DeclareRoles("ibank")
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class CurrencyServiceImpl implements CurrencyServiceLocal, CurrencyServiceRemote {
+    private static final String MAIN_CURRENCY_KEY = "MAIN_CURRENCY";//usd
 
     @EJB
     private CurrencyDAO currencyDAO;
@@ -46,6 +58,18 @@ public class CurrencyServiceImpl implements CurrencyService {
         }
 
         return currencyDAO.findByName(currency);
+    }
+
+    @Override
+    public Currency findMainCurrency() throws CurrencyNotFound {
+        final String currency = ConfigurationManager.getInstance().getProperty(MAIN_CURRENCY_KEY);
+        final Currency mainCurrency = currencyDAO.findByName(currency);
+
+        if (mainCurrency == null) {
+            throw new CurrencyNotFound("The main currency is not found");
+        }
+
+        return mainCurrency;
     }
 
     @Override

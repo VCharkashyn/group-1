@@ -11,8 +11,6 @@
         <meta name="Keywords" content="bank,money,transfer" />
         <meta name="robots" content="NOINDEX" />
         <meta name="author" content="Dmitry Drepin" />        
-        <c:set value="${initParam.simplurl}/login.jsp?expired=true" var="linkredirect"/>
-        <meta http-equiv="refresh" content="${pageContext.session.maxInactiveInterval};url=${linkredirect}" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
         <!-- CSS -->
@@ -33,15 +31,7 @@
                     <!-- Your website name end -->
                     <!-- Your slogan -->
                     <h2><fmt:message key="slogan"/>&hellip;</h2>
-                    <!-- Your slogan end -->  
-                    <div class="logout">     
-                        <mytag:messageTag rendered="${sessionScope.user!=null}"> 
-                            <fmt:message key="usernme"/>${sessionScope.user}  &nbsp;&nbsp; 
-                            <a href="${urllogout}">
-                                <fmt:message key="logout"/>
-                            </a>                                                         
-                        </mytag:messageTag> 
-                    </div>                   
+                    <!-- Your slogan end -->
                 </div>                    
             </div>
             <!-- Header end -->

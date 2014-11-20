@@ -1,6 +1,8 @@
 package com.company.ibank.controllers;
 
-import org.apache.log4j.Logger;
+import com.company.ibank.exceptions.ServiceException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +14,7 @@ import java.io.IOException;
 public class Controller extends HttpServlet
         implements javax.servlet.Servlet {
 
-    private final Logger log = Logger.getLogger(getClass());
+    private static final Logger log = LoggerFactory.getLogger(Controller.class);
     RequestHelper requestHelper =
             RequestHelper.getInstance();
 
@@ -37,71 +39,27 @@ public class Controller extends HttpServlet
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) {
-
         RequestPage page = null;
-
-                try {
-                    log.info("command start");
-                    ICommand command =
-                            requestHelper.getCommand(request);
-                    log.info("command get:" + command.toString());
-                    page = command.execute(request, response);
-                    if (page.isRedericted()) {
-                        redirect(page, response);
-                    } else {
-                        forward(page, request, response);
-                    }
-                }
-//                catch (AccesDenied ex) {
-//                    log.error("acces exc", ex);
-//                    request.setAttribute("errorMessage",
-//                            MessageManager.getInstance((String) request.getAttribute("language")).getProperty(
-//                            MessageManager.ACCESDENIED_EXCEPTION_ERROR_MESSAGE));
-//                    page=new RequestPage();
-//                    page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH));
-//                    forward(page, request, response);
-//                }
-//                catch (DAOException ex) {
-//                    log.error("dao exc", ex);
-//                    request.setAttribute("errorMessage",
-//                            MessageManager.getInstance((String) request.getAttribute("language")).getProperty(
-//                            MessageManager.DAOEXCEPTION_ERROR_MESSAGE));
-//                    page=new RequestPage();
-//                    page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH));
-//                    forward(page, request, response);
-//                }
-//                catch (DAOConfigurationException ex) {
-//                    log.error("dao config exc", ex);
-//                    request.setAttribute("errorMessage",
-//                            MessageManager.getInstance((String) request.getAttribute("language")).getProperty(
-//                            MessageManager.DAOCONFIGURATION_EXCEPTION_ERROR_MESSAGE));
-//                    page=new RequestPage();
-//                    page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH));
-//                    forward(page, request, response);
-//                }
-//                catch (PoolException ex) {
-//                    log.error("pool exc", ex);
-//                    request.setAttribute("errorMessage",
-//                            MessageManager.getInstance((String) request.getAttribute("language")).getProperty(
-//                            MessageManager.POOLEXCEPTION_ERROR_MESSAGE));
-//                    page=new RequestPage();
-//                    page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.ERROR_PAGE_PATH));
-//                    forward(page, request, response);
-//                }
-//
-//            }
-//            catch (ServletException e) {
-//                log.error("servlet exc:", e);
-//                page=new RequestPage();
-//                page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.SERVLET_ERROR_PAGE_PATH));
-//                redirect(page, response);
-//            }
-//        }
+        try {
+            log.info("command start");
+            ICommand command =
+                    requestHelper.getCommand(request);
+            log.info("command get:" + command.toString());
+            page = command.execute(request, response);
+            if (page.isRedericted()) {
+                redirect(page, response);
+            } else {
+                forward(page, request, response);
+            }
+        }
+        catch (ServiceException e) {
+            log.error("", e);
+        }
+        catch (ServletException e) {
+            log.error("", e);
+        }
         catch (IOException e) {
             log.error("io exc:", e);
-        } catch (ServletException e) {
-
-
         }
     }
 

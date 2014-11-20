@@ -3,7 +3,10 @@ package com.company.ibank.dao;
 import com.company.ibank.model.Currency;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.annotation.security.DeclareRoles;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -16,6 +19,8 @@ import java.util.List;
 
 
 @Stateless
+@DeclareRoles("ibank")
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class CurrencyDAOImpl implements CurrencyDAO {
 
     @PersistenceContext

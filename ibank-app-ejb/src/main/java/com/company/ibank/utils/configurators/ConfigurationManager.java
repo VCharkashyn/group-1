@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public class ConfigurationManager {
     public static final String TRANSFERS_VIEW_PAGE = "transfers_view";
-    public static final String LOGIN_URL = "login_page";
+    public static final String MAIN_PAGE = "main_page";
     private ResourceBundle resourceBundle;
     private static final String BUNDLE_NAME = "config";
 

@@ -16,7 +16,7 @@ public class NoCommand implements ICommand {
             HttpServletResponse response)
             throws ServletException, IOException {
         RequestPage page = new RequestPage();
-        page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.LOGIN_URL));
+        page.setPage(ConfigurationManager.getInstance().getProperty(ConfigurationManager.MAIN_PAGE));
         return page;
     }
 }
