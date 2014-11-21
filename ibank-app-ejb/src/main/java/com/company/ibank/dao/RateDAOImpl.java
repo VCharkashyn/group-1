@@ -10,6 +10,8 @@ import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
@@ -47,6 +49,22 @@ public class RateDAOImpl implements RateDAO {
 
     @Override
     public Rate findRate(Currency primCurrency, Currency secondCurrency) {
-        return null;
+        final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Rate> criteria = criteriaBuilder.createQuery(Rate.class);
+        Root<Rate> rates = criteria.from(Rate.class);
+        CriteriaQuery<Rate> rateCriteriaQuery = criteria.select(rates).
+                where(criteriaBuilder.and(criteriaBuilder.equal(rates.get("id").get("primaryCurrency"), primCurrency),
+                        criteriaBuilder.equal(rates.get("id").get("secondaryCurrency"), secondCurrency)))
+                .orderBy(criteriaBuilder.desc(rates.get("id").get("conversionDate")));
+
+        final TypedQuery<Rate> query = entityManager.createQuery(rateCriteriaQuery);
+
+        query.setMaxResults(1);
+        final List<Rate> resultList = query.getResultList();
+        if (resultList == null || resultList.size() == 0) {
+            return null;
+        }
+
+        return resultList.get(0);
     }
 }

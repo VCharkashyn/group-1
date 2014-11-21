@@ -25,6 +25,7 @@ public class Account implements Serializable {
     @Column(name = "amount")
     private double amount;
 
+    @JoinColumn(name="ACCOUNT_ID", referencedColumnName="id")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Currency> currencies;
 

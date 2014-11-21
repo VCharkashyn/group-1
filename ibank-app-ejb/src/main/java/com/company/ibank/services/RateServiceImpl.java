@@ -13,6 +13,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -28,6 +29,7 @@ public class RateServiceImpl implements RateServiceRemote, RateServiceLocal {
         if (rate == null || rate.getId() == null) {
             throw new ServiceException("Unsupported parameter:rate");
         }
+        rate.getId().setConversionDate(new Date());
 
         rateDAO.create(rate);
     }

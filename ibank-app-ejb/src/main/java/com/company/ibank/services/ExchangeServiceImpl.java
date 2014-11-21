@@ -48,7 +48,7 @@ public class ExchangeServiceImpl implements ExchangeRateServiceLocal, ExchangeRa
         final Currency mainCurrency = currencyService.findMainCurrency();
 
         if (primCurrency == null || secondCurrency == null) {
-            throw new CurrencyNotFound("Currencies doesn't exist in DB");
+            throw new CurrencyNotFound("Currencies doesn't exist");
         }
 
         final boolean isCurrenciesExist = accountService.isCurrenciesExistInAccount(Arrays.asList(new Currency[]{primCurrency, secondCurrency}), account.getId());
