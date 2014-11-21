@@ -1,35 +1,31 @@
-package com.company.ibank.dao;
+package com.company.ibank.services;
 
+import com.company.ibank.exceptions.ServiceException;
 import com.company.ibank.model.Currency;
 import com.company.ibank.model.Rate;
 import com.company.ibank.model.RatePK;
 
 import javax.annotation.security.RolesAllowed;
-import javax.ejb.Local;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import java.util.List;
 
-@Local
-public interface RateDAO {
+public interface RateService {
 
     @RolesAllowed("ibank")
-    @TransactionAttribute(TransactionAttributeType.MANDATORY)
-    void create(Rate rate);
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    void addRate(Rate rate) throws ServiceException;
 
     @RolesAllowed("ibank")
-    @TransactionAttribute(TransactionAttributeType.MANDATORY)
-    void remove(Rate rate);
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    void removeRate(Rate rate) throws ServiceException;
 
     @RolesAllowed("ibank")
-    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
-    Rate findById(RatePK id);
+    Rate findRate(RatePK rateID);
 
     @RolesAllowed("ibank")
-    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     List<Rate> getRates();
 
     @RolesAllowed("ibank")
-    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     Rate findRate(Currency primCurrency, Currency secondCurrency);
 }

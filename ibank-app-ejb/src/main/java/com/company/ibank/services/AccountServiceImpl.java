@@ -1,15 +1,24 @@
-package com.company.ibank.services.local;
+package com.company.ibank.services;
 
 
 import com.company.ibank.dao.AccountDAO;
 import com.company.ibank.exceptions.ServiceException;
 import com.company.ibank.model.Account;
+import com.company.ibank.model.Currency;
+import com.company.ibank.services.local.AccountServiceLocal;
+import com.company.ibank.services.remote.AccountServiceRemote;
+
+import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import java.util.List;
 
 @Stateless
-public class AccountServiceImpl implements AccountService{
+@DeclareRoles("ibank")
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class AccountServiceImpl implements AccountServiceLocal, AccountServiceRemote {
 
     @EJB
     private AccountDAO accountDAO;
@@ -49,5 +58,10 @@ public class AccountServiceImpl implements AccountService{
     @Override
     public List<Account> getAllAccounts() {
         return accountDAO.getAccounts();
+    }
+
+    @Override
+    public boolean isCurrenciesExistInAccount(final List<Currency> currencies, final Long id) {
+        return accountDAO.isContainingCurrencies(currencies, id);
     }
 }
