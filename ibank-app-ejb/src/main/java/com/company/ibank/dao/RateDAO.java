@@ -8,6 +8,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Local;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import java.util.Date;
 import java.util.List;
 
 @Local
@@ -32,4 +33,8 @@ public interface RateDAO {
     @RolesAllowed("ibank")
     @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     Rate findRate(Currency primCurrency, Currency secondCurrency);
+
+    @RolesAllowed("ibank")
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
+    Rate findRate(Currency primCurrency, Currency secondCurrency, Date date);
 }

@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -48,7 +49,7 @@ public class RateDAOImpl implements RateDAO {
     }
 
     @Override
-    public Rate findRate(Currency primCurrency, Currency secondCurrency) {
+    public Rate findRate(final Currency primCurrency, final Currency secondCurrency) {
         final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Rate> criteria = criteriaBuilder.createQuery(Rate.class);
         Root<Rate> rates = criteria.from(Rate.class);
@@ -59,6 +60,28 @@ public class RateDAOImpl implements RateDAO {
 
         final TypedQuery<Rate> query = entityManager.createQuery(rateCriteriaQuery);
 
+        query.setMaxResults(1);
+        final List<Rate> resultList = query.getResultList();
+        if (resultList == null || resultList.size() == 0) {
+            return null;
+        }
+
+        return resultList.get(0);
+    }
+
+    @Override
+    public Rate findRate(final Currency primCurrency, final Currency secondCurrency, final Date date) {
+        final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Rate> criteria = criteriaBuilder.createQuery(Rate.class);
+        Root<Rate> rates = criteria.from(Rate.class);
+        CriteriaQuery<Rate> rateCriteriaQuery = criteria.select(rates).
+                where(criteriaBuilder.and(
+                        criteriaBuilder.equal(rates.get("id").get("primaryCurrency"), primCurrency),
+                        criteriaBuilder.equal(rates.get("id").get("secondaryCurrency"), secondCurrency),
+                        criteriaBuilder.equal(rates.get("id").get("conversionDate"), date)
+                ));
+
+        final TypedQuery<Rate> query = entityManager.createQuery(rateCriteriaQuery);
         query.setMaxResults(1);
         final List<Rate> resultList = query.getResultList();
         if (resultList == null || resultList.size() == 0) {

@@ -8,6 +8,7 @@ import com.company.ibank.model.RatePK;
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import java.util.Date;
 import java.util.List;
 
 public interface RateService {
@@ -28,4 +29,7 @@ public interface RateService {
 
     @RolesAllowed("ibank")
     Rate findRate(Currency primCurrency, Currency secondCurrency);
+
+    @RolesAllowed("ibank")
+    Rate findRate(final Currency primCurrency, final Currency secondCurrency, final Date date);
 }

@@ -58,11 +58,20 @@ public class RateServiceImpl implements RateServiceRemote, RateServiceLocal {
     }
 
     @Override
-    public Rate findRate(Currency primCurrency, Currency secondCurrency) {
+    public Rate findRate(final Currency primCurrency, final Currency secondCurrency) {
         if (primCurrency == null || secondCurrency == null) {
             return null;
         }
 
         return rateDAO.findRate(primCurrency, secondCurrency);
+    }
+
+    @Override
+    public Rate findRate(final Currency primCurrency, final Currency secondCurrency, final Date date) {
+        if (primCurrency == null || secondCurrency == null) {
+            return null;
+        }
+
+        return rateDAO.findRate(primCurrency, secondCurrency, date);
     }
 }
